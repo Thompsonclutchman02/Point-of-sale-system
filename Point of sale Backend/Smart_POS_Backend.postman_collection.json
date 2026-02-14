@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "Smart POS Backend",
+    "_postman_id": "12345-67890-abcdef",
+    "description": "Postman collection for Smart POS product and sales endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/products/"
+          }
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/products/1"
+          }
+        },
+        {
+          "name": "Add Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Burger\",\n    \"sku\": \"BURG100\",\n    \"price\": 50,\n    \"stock_quantity\": 10,\n    \"discount_allowed\": 1,\n    \"expiry_date\": \"2025-12-31T00:00:00\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/products/"
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Burger Deluxe\",\n    \"sku\": \"BURG200\",\n    \"price\": 70,\n    \"stock_quantity\": 5,\n    \"discount_allowed\": 1,\n    \"expiry_date\": \"2026-01-01T00:00:00\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/products/1"
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "url": "http://127.0.0.1:8000/products/1"
+          }
+        },
+        {
+          "name": "Search Product by SKU",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/products/search/BURG100"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Checkout (Create Sale)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    { \"product_id\": 1, \"quantity\": 2 },\n    { \"product_id\": 2, \"quantity\": 1 }\n  ]\n}"
+            },
+            "url": "http://127.0.0.1:8000/sales/checkout"
+          }
+        },
+        {
+          "name": "Get All Sales",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/sales/"
+          }
+        },
+        {
+          "name": "Get Sale by ID (Receipt)",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/sales/1"
+          }
+        }
+      ]
+    }
+  ]
+}
